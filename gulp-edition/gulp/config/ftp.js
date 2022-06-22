@@ -1,0 +1,8 @@
+export let configFTP = {
+  host: '',
+  user: '',
+  password: '',
+  parallel: 5,
+}
+
+export let ftpFolder = ``

@@ -1,0 +1,12 @@
+// <BUTTON>
+.button {
+  display: inline-block;
+  @media (any-hover: hover) {
+    &:hover {
+    }
+  }
+
+  &._fw {
+    width: 100%;
+  }
+}
