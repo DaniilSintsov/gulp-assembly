@@ -36,13 +36,11 @@
 // Подключение списка активных модулей
 import {modules} from '../functions/services/modules.js'
 // Вспомогательные функции
-import {isMobile} from '../functions/services/flags.js'
-import {_slideUp, _slideDown, _slideToggle} from '../functions/services/services.js'
 import {formValidate} from '../functions/forms/forms.js'
+import {_slideToggle, _slideUp} from '../functions/services/services.js'
 // Подключение файла стилей
 // Базовые стили подключаются в src/scss/base/forms/forms.scss
 // Файл базовых стилей: src/scss/base/forms/select.scss
-
 
 // Класс построения Select
 class SelectConstructor {
@@ -113,28 +111,28 @@ class SelectConstructor {
     // ...при клике
     document.addEventListener(
       'click',
-      function(e) {
+      function (e) {
         this.selectsActions(e)
       }.bind(this)
     )
     // ...при нажатии клавиши
     document.addEventListener(
       'keydown',
-      function(e) {
+      function (e) {
         this.selectsActions(e)
       }.bind(this)
     )
     // ...при фокусе
     document.addEventListener(
       'focusin',
-      function(e) {
+      function (e) {
         this.selectsActions(e)
       }.bind(this)
     )
     // ...при потере фокуса
     document.addEventListener(
       'focusout',
-      function(e) {
+      function (e) {
         this.selectsActions(e)
       }.bind(this)
     )
@@ -189,7 +187,7 @@ class SelectConstructor {
       ? originalSelect.dataset.speed
       : '150'
     // Событие при изменении оригинального select
-    originalSelect.addEventListener('change', function(e) {
+    originalSelect.addEventListener('change', function (e) {
       _this.selectChange(e)
     })
   }
@@ -242,12 +240,12 @@ class SelectConstructor {
       const selectItem = targetElement.closest('.select')
         ? targetElement.closest('.select')
         : document.querySelector(
-          `.${this.selectClasses.classSelect}[data-id="${
-                  targetElement.closest(
-                          this.getSelectClass(this.selectClasses.classSelectTag)
-                  ).dataset.selectId
-          }"]`
-        )
+            `.${this.selectClasses.classSelect}[data-id="${
+              targetElement.closest(
+                this.getSelectClass(this.selectClasses.classSelectTag)
+              ).dataset.selectId
+            }"]`
+          )
       const originalSelect = this.getSelectElement(selectItem).originalSelect
       if (targetType === 'click') {
         if (!originalSelect.disabled) {
@@ -310,7 +308,7 @@ class SelectConstructor {
       )}${this.getSelectClass(this.selectClasses.classSelectOpen)}`
     )
     if (selectActiveItems.length) {
-      selectActiveItems.forEach((selectActiveItem) => {
+      selectActiveItems.forEach(selectActiveItem => {
         this.selectСlose(selectActiveItem)
       })
     }
@@ -376,7 +374,7 @@ class SelectConstructor {
     if (originalSelect.multiple && originalSelect.hasAttribute('data-tags')) {
       selectTitleValue = this.getSelectedOptionsData(originalSelect)
         .elements.map(
-          (option) =>
+          option =>
             `<span role="button" data-select-id="${
               selectItem.dataset.id
             }" data-value="${
@@ -400,8 +398,8 @@ class SelectConstructor {
     selectTitleValue = selectTitleValue.length
       ? selectTitleValue
       : originalSelect.dataset.placeholder
-        ? originalSelect.dataset.placeholder
-        : ''
+      ? originalSelect.dataset.placeholder
+      : ''
     // Если включен режим pseudo
     let pseudoAttribute = ''
     let pseudoAttributeClass = ''
@@ -425,9 +423,9 @@ class SelectConstructor {
         this.getSelectedOptionsData(originalSelect).elements.length &&
         this.getSelectedOptionsData(originalSelect).elements[0].dataset.class
           ? ` ${
-            this.getSelectedOptionsData(originalSelect).elements[0].dataset
-              .class
-          }`
+              this.getSelectedOptionsData(originalSelect).elements[0].dataset
+                .class
+            }`
           : ''
       // Выводим текстовое значение
       return `<button type="button" class="${this.selectClasses.classSelectTitle}"><span${pseudoAttribute} class="${this.selectClasses.classSelectValue}${pseudoAttributeClass}"><span class="${this.selectClasses.classSelectContent}${customClass}">${selectTitleValue}</span></span></button>`
@@ -465,7 +463,7 @@ class SelectConstructor {
   // Получение данных плейсхолдера
   getSelectPlaceholder(originalSelect) {
     const selectPlaceholder = Array.from(originalSelect.options).find(
-      (option) => !option.value
+      option => !option.value
     )
     if (selectPlaceholder) {
       return {
@@ -487,20 +485,18 @@ class SelectConstructor {
       // Если мультивыбор
       // Убираем плейсхолдер, получаем остальные выбранные элементы
       selectedOptions = Array.from(originalSelect.options)
-        .filter((option) => option.value)
-        .filter((option) => option.selected)
+        .filter(option => option.value)
+        .filter(option => option.selected)
     } else {
       // Если единичный выбор
       selectedOptions.push(originalSelect.options[originalSelect.selectedIndex])
     }
     return {
-      elements: selectedOptions.map((option) => option),
+      elements: selectedOptions.map(option => option),
       values: selectedOptions
-        .filter((option) => option.value)
-        .map((option) => option.value),
-      html: selectedOptions.map((option) =>
-        this.getSelectElementContent(option)
-      ),
+        .filter(option => option.value)
+        .map(option => option.value),
+      html: selectedOptions.map(option => this.getSelectElementContent(option)),
     }
   }
 
@@ -523,13 +519,13 @@ class SelectConstructor {
           !this.getSelectPlaceholder(originalSelect).show) ||
         originalSelect.multiple
       ) {
-        selectOptions = selectOptions.filter((option) => option.value)
+        selectOptions = selectOptions.filter(option => option.value)
       }
       // Строим и выводим основную конструкцию
       selectOptionsHTML += selectOptionsScroll
         ? `<div ${selectOptionsScroll} ${selectOptionsScrollHeight} class="${this.selectClasses.classSelectOptionsScroll}">`
         : ''
-      selectOptions.forEach((selectOption) => {
+      selectOptions.forEach(selectOption => {
         // Получаем конструкцию конкретного элемента списка
         selectOptionsHTML += this.getOption(selectOption, originalSelect)
       })
@@ -593,14 +589,14 @@ class SelectConstructor {
       // Очищаем выбранные элементы
       const originalSelectSelectedItems =
         this.getSelectedOptionsData(originalSelect).elements
-      originalSelectSelectedItems.forEach((originalSelectSelectedItem) => {
+      originalSelectSelectedItems.forEach(originalSelectSelectedItem => {
         originalSelectSelectedItem.removeAttribute('selected')
       })
       // Выбираем элементы
       const selectSelectedItems = selectItem.querySelectorAll(
         this.getSelectClass(this.selectClasses.classSelectOptionSelected)
       )
-      selectSelectedItems.forEach((selectSelectedItems) => {
+      selectSelectedItems.forEach(selectSelectedItems => {
         originalSelect
           .querySelector(`option[value="${selectSelectedItems.dataset.value}"]`)
           .setAttribute('selected', 'selected')
@@ -613,13 +609,13 @@ class SelectConstructor {
         if (
           selectItem.querySelector(
             `${this.getSelectClass(
-                    this.selectClasses.classSelectOption
+              this.selectClasses.classSelectOption
             )}[hidden]`
           )
         ) {
           selectItem.querySelector(
             `${this.getSelectClass(
-                    this.selectClasses.classSelectOption
+              this.selectClasses.classSelectOption
             )}[hidden]`
           ).hidden = false
         }
@@ -695,8 +691,8 @@ class SelectConstructor {
       `.${this.selectClasses.classSelectOption}`
     )
     const _this = this
-    selectInput.addEventListener('input', function() {
-      selectOptionsItems.forEach((selectOptionsItem) => {
+    selectInput.addEventListener('input', function () {
+      selectOptionsItems.forEach(selectOptionsItem => {
         if (
           selectOptionsItem.textContent
             .toUpperCase()

@@ -51,11 +51,11 @@
 
 // Подключение функционала
 import {
-  getHash,
   dataMediaQueries,
+  getHash,
   setHash,
-  _slideUp,
   _slideDown,
+  _slideUp
 } from './services/services.js'
 // Подключение файла стилей
 // Базовые стили подключаются в src/scss/base/base.scss
@@ -80,9 +80,9 @@ export function tabs() {
     // Получение слойлеров с медиа запросами
     let mdQueriesArray = dataMediaQueries(tabs, 'tabs')
     if (mdQueriesArray && mdQueriesArray.length) {
-      mdQueriesArray.forEach((mdQueriesItem) => {
+      mdQueriesArray.forEach(mdQueriesItem => {
         // Событие
-        mdQueriesItem.matchMedia.addEventListener('change', function() {
+        mdQueriesItem.matchMedia.addEventListener('change', function () {
           setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia)
         })
         setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia)
@@ -92,17 +92,17 @@ export function tabs() {
 
   // Установка позиций заголовков
   function setTitlePosition(tabsMediaArray, matchMedia) {
-    tabsMediaArray.forEach((tabsMediaItem) => {
+    tabsMediaArray.forEach(tabsMediaItem => {
       tabsMediaItem = tabsMediaItem.item
       let tabsTitles = tabsMediaItem.querySelector('[data-tabs-titles]')
       let tabsTitleItems = tabsMediaItem.querySelectorAll('[data-tabs-title]')
       let tabsContent = tabsMediaItem.querySelector('[data-tabs-body]')
       let tabsContentItems = tabsMediaItem.querySelectorAll('[data-tabs-item]')
       tabsTitleItems = Array.from(tabsTitleItems).filter(
-        (item) => item.closest('[data-tabs]') === tabsMediaItem
+        item => item.closest('[data-tabs]') === tabsMediaItem
       )
       tabsContentItems = Array.from(tabsContentItems).filter(
-        (item) => item.closest('[data-tabs]') === tabsMediaItem
+        item => item.closest('[data-tabs]') === tabsMediaItem
       )
       tabsContentItems.forEach((tabsContentItem, index) => {
         if (matchMedia.matches) {
@@ -132,10 +132,10 @@ export function tabs() {
     }
     if (tabsContent.length) {
       tabsContent = Array.from(tabsContent).filter(
-        (item) => item.closest('[data-tabs]') === tabsBlock
+        item => item.closest('[data-tabs]') === tabsBlock
       )
       tabsTitles = Array.from(tabsTitles).filter(
-        (item) => item.closest('[data-tabs]') === tabsBlock
+        item => item.closest('[data-tabs]') === tabsBlock
       )
       tabsContent.forEach((tabsContentItem, index) => {
         tabsTitles[index].setAttribute('data-tabs-title', '')
@@ -167,10 +167,10 @@ export function tabs() {
     if (tabsContent.length > 0) {
       const isHash = tabsBlock.hasAttribute('data-tabs-hash')
       tabsContent = Array.from(tabsContent).filter(
-        (item) => item.closest('[data-tabs]') === tabsBlock
+        item => item.closest('[data-tabs]') === tabsBlock
       )
       tabsTitles = Array.from(tabsTitles).filter(
-        (item) => item.closest('[data-tabs]') === tabsBlock
+        item => item.closest('[data-tabs]') === tabsBlock
       )
       tabsContent.forEach((tabsContentItem, index) => {
         if (tabsTitles[index].classList.contains('_tab-active')) {
@@ -207,8 +207,8 @@ export function tabs() {
         )
         tabActiveTitle.length
           ? (tabActiveTitle = Array.from(tabActiveTitle).filter(
-          (item) => item.closest('[data-tabs]') === tabsBlock
-          ))
+              item => item.closest('[data-tabs]') === tabsBlock
+            ))
           : null
         tabActiveTitle.length
           ? tabActiveTitle[0].classList.remove('_tab-active')

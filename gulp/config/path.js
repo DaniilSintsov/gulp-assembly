@@ -1,5 +1,5 @@
 import * as nodePath from 'path'
-import { ftpFolder } from './ftp.js'
+import {ftpFolder} from './ftp.js'
 
 const rootFolder = nodePath.basename(nodePath.resolve())
 

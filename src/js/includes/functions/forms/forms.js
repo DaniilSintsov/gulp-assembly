@@ -1,12 +1,10 @@
 // Подключение списка активных модулей
 import {modules} from '../services/modules.js'
 // Вспомогательные функции
-import {isMobile} from '../services/flags.js'
-import {_slideUp, _slideDown, _slideToggle} from '../services/services.js'
 // Модуль прокрутки к блоку
 import {gotoBlock} from '../scroll/gotoblock.js'
+//============================================================
 
-//=======================================================================================================================
 // Работа с полями формы. Добавление классов, работа с placeholder
 export function formFieldsInit(options = {viewPass: false}) {
   // Если включено, добавляем функционал "скрыть placeholder при фокусе"
@@ -14,13 +12,13 @@ export function formFieldsInit(options = {viewPass: false}) {
     'input[placeholder],textarea[placeholder]'
   )
   if (formFields.length) {
-    formFields.forEach((formField) => {
+    formFields.forEach(formField => {
       if (!formField.hasAttribute('data-placeholder-nohide')) {
         formField.dataset.placeholder = formField.placeholder
       }
     })
   }
-  document.body.addEventListener('focusin', function(e) {
+  document.body.addEventListener('focusin', function (e) {
     const targetElement = e.target
     if (
       targetElement.tagName === 'INPUT' ||
@@ -36,7 +34,7 @@ export function formFieldsInit(options = {viewPass: false}) {
       formValidate.removeError(targetElement)
     }
   })
-  document.body.addEventListener('focusout', function(e) {
+  document.body.addEventListener('focusout', function (e) {
     const targetElement = e.target
     if (
       targetElement.tagName === 'INPUT' ||
@@ -58,7 +56,7 @@ export function formFieldsInit(options = {viewPass: false}) {
 
   // Если включено, добавляем функционал "Показать пароль"
   if (options.viewPass) {
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       let targetElement = e.target
       if (targetElement.closest('[class*="__viewpass"]')) {
         let inputType = targetElement.classList.contains('_viewpass-active')
@@ -80,7 +78,7 @@ export let formValidate = {
     let error = 0
     let formRequiredItems = form.querySelectorAll('*[data-required]')
     if (formRequiredItems.length) {
-      formRequiredItems.forEach((formRequiredItem) => {
+      formRequiredItems.forEach(formRequiredItem => {
         if (
           (formRequiredItem.offsetParent !== null ||
             formRequiredItem.tagName === 'SELECT') &&
@@ -181,11 +179,11 @@ export function formSubmit(options = {validate: true}) {
   const forms = document.forms
   if (forms.length) {
     for (const form of forms) {
-      form.addEventListener('submit', function(e) {
+      form.addEventListener('submit', function (e) {
         const form = e.target
         formSubmitAction(form, e)
       })
-      form.addEventListener('reset', function(e) {
+      form.addEventListener('reset', function (e) {
         const form = e.target
         formValidate.formClean(form)
       })
@@ -262,7 +260,7 @@ export function formSubmit(options = {validate: true}) {
 //=======================================================================================================================
 // Модуль формы "колличество"
 export function formQuantity() {
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', function (e) {
     let targetElement = e.target
     if (targetElement.closest('.quantity__button')) {
       let value = parseInt(
@@ -324,17 +322,17 @@ export function formRating() {
       const ratingItems = rating.querySelectorAll('.rating__item')
       for (let index = 0; index < ratingItems.length; index++) {
         const ratingItem = ratingItems[index]
-        ratingItem.addEventListener('mouseenter', function(e) {
+        ratingItem.addEventListener('mouseenter', function (e) {
           // Обновление переменных
           initRatingVars(rating)
           // Обновление активных звезд
           setRatingActiveWidth(ratingItem.value)
         })
-        ratingItem.addEventListener('mouseleave', function(e) {
+        ratingItem.addEventListener('mouseleave', function (e) {
           // Обновление активных звезд
           setRatingActiveWidth()
         })
-        ratingItem.addEventListener('click', function(e) {
+        ratingItem.addEventListener('click', function (e) {
           // Обновление переменных
           initRatingVars(rating)
 

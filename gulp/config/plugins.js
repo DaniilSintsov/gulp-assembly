@@ -1,8 +1,8 @@
-import plumber from "gulp-plumber";
-import notify from "gulp-notify";
-import browsersync from "browser-sync";
-import newer from "gulp-newer";
-import ifPlugin from "gulp-if";
+import browsersync from 'browser-sync'
+import ifPlugin from 'gulp-if'
+import newer from 'gulp-newer'
+import notify from 'gulp-notify'
+import plumber from 'gulp-plumber'
 
 // Экспортируем объект
 export const plugins = {
@@ -11,4 +11,4 @@ export const plugins = {
   browsersync: browsersync,
   newer: newer,
   if: ifPlugin,
-};
+}

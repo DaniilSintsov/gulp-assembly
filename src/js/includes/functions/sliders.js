@@ -4,7 +4,7 @@
  */
 
 // Подключаем слайдер Swiper из node_modules
-import Swiper, {Navigation, EffectFade} from 'swiper'
+import Swiper, {EffectFade, Navigation} from 'swiper'
 /*
  При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
  Пример: { Navigation, Autoplay }
@@ -102,7 +102,7 @@ function initSliders() {
       },
       // События
       on: {
-        slideChangeTransitionEnd: function() {
+        slideChangeTransitionEnd: function () {
           const activeSlide = document.querySelector(
             '.goods-offer-slider__slide.swiper-slide-active'
           )
@@ -185,7 +185,7 @@ function initSlidersScroll() {
   }
 }
 
-window.addEventListener('load', function(e) {
+window.addEventListener('load', function (e) {
   // Запуск инициализации слайдеров
   initSliders()
   // Запуск инициализации скролла на базе слайдера (по классу swiper_scroll)

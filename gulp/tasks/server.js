@@ -1,4 +1,4 @@
-import { configServer } from '../config/settings.js'
+import {configServer} from '../config/settings.js'
 
 export const server = () => {
   if (configServer.forPHP) {

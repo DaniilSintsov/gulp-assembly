@@ -1,9 +1,9 @@
 import fileInclude from 'gulp-file-include'
+import pug from 'gulp-pug'
 import versionNumber from 'gulp-version-number'
 import webpHtmlNosvg from 'gulp-webp-html-nosvg'
-import pug from 'gulp-pug'
 
-import { configHtml } from '../config/settings.js'
+import {configHtml} from '../config/settings.js'
 
 export const html = () => {
   return app.gulp

@@ -1,4 +1,4 @@
-import svgSprite from "gulp-svg-sprite";
+import svgSprite from 'gulp-svg-sprite'
 
 export const svgSprive = () => {
   return app.gulp
@@ -6,8 +6,8 @@ export const svgSprive = () => {
     .pipe(
       app.plugins.plumber(
         app.plugins.notify.onError({
-          title: "SVG",
-          message: "Error: <%= error.message %>",
+          title: 'SVG',
+          message: 'Error: <%= error.message %>',
         })
       )
     )
@@ -22,5 +22,5 @@ export const svgSprive = () => {
         },
       })
     )
-    .pipe(app.gulp.dest(`${app.path.build.images}`));
-};
+    .pipe(app.gulp.dest(`${app.path.build.images}`))
+}

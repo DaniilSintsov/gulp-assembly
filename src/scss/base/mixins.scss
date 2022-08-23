@@ -4,7 +4,7 @@
     font-family: $font_name;
     font-display: swap;
     src: url('../fonts/#{$file_name}.woff2') format('woff2'),
-    url('../fonts/#{$file_name}.woff') format('woff');
+      url('../fonts/#{$file_name}.woff') format('woff');
     font-weight: #{$weight};
     font-style: #{$style};
   }
@@ -114,7 +114,8 @@
     $keepSize !=
     1 and
     $keepSize !=
-    2 {
+    2
+  {
     @media (min-width: $widthFromMedia) {
       #{$property}: inherit;
     }

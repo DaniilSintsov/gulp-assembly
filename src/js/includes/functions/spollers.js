@@ -59,11 +59,7 @@
  */
 
 // Подключение функционала
-import {
-  dataMediaQueries,
-  _slideToggle,
-  _slideUp,
-} from './services/services.js'
+import {dataMediaQueries, _slideToggle, _slideUp} from './services/services.js'
 // Подключение файла стилей
 // Базовые стили подключаются в src/scss/base/base.scss
 // Файл базовых стилей: src/scss/base/spollers.scss
@@ -73,7 +69,7 @@ export function spollers() {
   const spollersArray = document.querySelectorAll('[data-spollers]')
   if (spollersArray.length > 0) {
     // Получение обычных спойлеров
-    const spollersRegular = Array.from(spollersArray).filter(function(
+    const spollersRegular = Array.from(spollersArray).filter(function (
       item,
       index,
       self
@@ -87,9 +83,9 @@ export function spollers() {
     // Получение слойлеров с медиа запросами
     let mdQueriesArray = dataMediaQueries(spollersArray, 'spollers')
     if (mdQueriesArray && mdQueriesArray.length) {
-      mdQueriesArray.forEach((mdQueriesItem) => {
+      mdQueriesArray.forEach(mdQueriesItem => {
         // Событие
-        mdQueriesItem.matchMedia.addEventListener('change', function() {
+        mdQueriesItem.matchMedia.addEventListener('change', function () {
           initSpollers(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia)
         })
         initSpollers(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia)
@@ -98,7 +94,7 @@ export function spollers() {
 
     // Инициализация
     function initSpollers(spollersArray, matchMedia = false) {
-      spollersArray.forEach((spollersBlock) => {
+      spollersArray.forEach(spollersBlock => {
         spollersBlock = matchMedia ? spollersBlock.item : spollersBlock
         if (matchMedia.matches || !matchMedia) {
           spollersBlock.classList.add('_spoller-init')
@@ -117,9 +113,9 @@ export function spollers() {
       let spollerTitles = spollersBlock.querySelectorAll('[data-spoller]')
       if (spollerTitles.length) {
         spollerTitles = Array.from(spollerTitles).filter(
-          (item) => item.closest('[data-spollers]') === spollersBlock
+          item => item.closest('[data-spollers]') === spollersBlock
         )
-        spollerTitles.forEach((spollerTitle) => {
+        spollerTitles.forEach(spollerTitle => {
           if (hideSpollerBody) {
             spollerTitle.removeAttribute('tabindex')
             if (!spollerTitle.classList.contains('_spoller-active')) {
@@ -175,10 +171,10 @@ export function spollers() {
     // Закрытие при клике вне спойлера
     const spollersClose = document.querySelectorAll('[data-spoller-close]')
     if (spollersClose.length) {
-      document.addEventListener('click', function(e) {
+      document.addEventListener('click', function (e) {
         const el = e.target
         if (!el.closest('[data-spollers]')) {
-          spollersClose.forEach((spollerClose) => {
+          spollersClose.forEach(spollerClose => {
             const spollersBlock = spollerClose.closest('[data-spollers]')
             const spollerSpeed = spollersBlock.dataset.spollersSpeed
               ? parseInt(spollersBlock.dataset.spollersSpeed)

@@ -16,18 +16,18 @@ global.app = {
 
 // Импорт задач
 import {copy} from './gulp/tasks/copy.js'
-import {reset} from './gulp/tasks/reset.js'
-import {html} from './gulp/tasks/html.js'
-import {php} from './gulp/tasks/php.js'
-import {server} from './gulp/tasks/server.js'
-import {scss} from './gulp/tasks/scss.js'
-import {js} from './gulp/tasks/js.js'
-import {images} from './gulp/tasks/images.js'
+import {fontsStyle, otfToTtf, ttfToWoff} from './gulp/tasks/fonts.js'
+import {ftp} from './gulp/tasks/ftp.js'
 import {gitignore} from './gulp/tasks/gitignore.js'
-import {otfToTtf, ttfToWoff, fontsStyle} from './gulp/tasks/fonts.js'
+import {html} from './gulp/tasks/html.js'
+import {images} from './gulp/tasks/images.js'
+import {js} from './gulp/tasks/js.js'
+import {php} from './gulp/tasks/php.js'
+import {reset} from './gulp/tasks/reset.js'
+import {scss} from './gulp/tasks/scss.js'
+import {server} from './gulp/tasks/server.js'
 import {svgSprive} from './gulp/tasks/svgSprive.js'
 import {zip} from './gulp/tasks/zip.js'
-import {ftp} from './gulp/tasks/ftp.js'
 
 // Наблюдатель за изменениями в файлах
 function watcher() {
@@ -45,19 +45,16 @@ export {svgSprive}
 const fonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle)
 
 // Основные задачи
-const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, php, scss, js, images, gitignore))
+const mainTasks = gulp.series(
+  fonts,
+  gulp.parallel(copy, html, php, scss, js, images, gitignore)
+)
 
 // Построение сценариев выполнения задач
-const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server))
-const build = gulp.series(reset, mainTasks)
-const deployZIP = gulp.series(reset, mainTasks, zip)
-const deployFTP = gulp.series(reset, mainTasks, ftp)
-
-// Экспорт сценариев
-export {dev}
-export {build}
-export {deployZIP}
-export {deployFTP}
+export const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server))
+export const build = gulp.series(reset, mainTasks)
+export const deployZIP = gulp.series(reset, mainTasks, zip)
+export const deployFTP = gulp.series(reset, mainTasks, ftp)
 
 // Выполнение сценария по умолчанию
 gulp.task('default', dev)

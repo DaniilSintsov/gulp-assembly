@@ -1,14 +1,11 @@
 // Модуль работы со скроллом
-
-// Проверка мобильного браузера
-import {isMobile} from '../services/flags.js'
 // Получение хеша в адресе сайта
 import {getHash} from '../services/services.js'
 // Модуль прокрутки к блоку
 import {gotoBlock} from './gotoblock.js'
 // Переменная контроля добавления события window scroll
 let addWindowScrollEvent = false
-//====================================================================================================================================================================================================================================================================================================
+//============================================================
 // Плавная навигация по странице
 export function pageNavigation() {
   // data-goto - указать ID блока
@@ -107,7 +104,7 @@ export function headerScroll() {
   const startPoint = header.dataset.scroll ? header.dataset.scroll : 1
   let scrollDirection = 0
   let timer
-  document.addEventListener('windowScroll', function(e) {
+  document.addEventListener('windowScroll', function (e) {
     const scrollTop = window.scrollY
     clearTimeout(timer)
     if (scrollTop >= startPoint) {
@@ -157,7 +154,7 @@ export function stickyBlock() {
   function stickyBlockInit() {
     const stickyParents = document.querySelectorAll('[data-sticky]')
     if (stickyParents.length) {
-      stickyParents.forEach((stickyParent) => {
+      stickyParents.forEach(stickyParent => {
         let stickyConfig = {
           media: stickyParent.dataset.sticky
             ? parseInt(stickyParent.dataset.sticky)
@@ -238,7 +235,7 @@ export function stickyBlock() {
 setTimeout(() => {
   if (addWindowScrollEvent) {
     let windowScroll = new Event('windowScroll')
-    window.addEventListener('scroll', function(e) {
+    window.addEventListener('scroll', function (e) {
       document.dispatchEvent(windowScroll)
     })
   }

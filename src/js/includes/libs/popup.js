@@ -30,11 +30,9 @@
 
 // Подключение функционала
 import {
-  isMobile,
-  bodyLockStatus,
   bodyLock,
-  bodyUnlock,
-  bodyLockToggle,
+  bodyLockStatus,
+  bodyUnlock
 } from '../functions/services/flags.js'
 import {modules} from '../functions/services/modules.js'
 // Подключение файла стилей
@@ -73,14 +71,10 @@ class Popup {
       },
       on: {
         // События
-        beforeOpen: function() {
-        },
-        afterOpen: function() {
-        },
-        beforeClose: function() {
-        },
-        afterClose: function() {
-        },
+        beforeOpen: function () {},
+        afterOpen: function () {},
+        beforeClose: function () {},
+        afterClose: function () {},
       },
     }
     this.youTubeCode
@@ -149,7 +143,7 @@ class Popup {
     // Клик на всем документе
     document.addEventListener(
       'click',
-      function(e) {
+      function (e) {
         // Клик по кнопке "открыть"
         const buttonOpen = e.target.closest(
           `[${this.options.attributeOpenButton}]`
@@ -193,7 +187,7 @@ class Popup {
     // Закрытие по ESC
     document.addEventListener(
       'keydown',
-      function(e) {
+      function (e) {
         if (
           this.options.closeEsc &&
           e.which == 27 &&
@@ -216,7 +210,7 @@ class Popup {
       // Проверка изменения адресной строки
       window.addEventListener(
         'hashchange',
-        function() {
+        function () {
           if (window.location.hash) {
             this._openToHash()
           } else {
@@ -227,7 +221,7 @@ class Popup {
 
       window.addEventListener(
         'load',
-        function() {
+        function () {
           if (window.location.hash) {
             this._openToHash()
           }
@@ -419,21 +413,21 @@ class Popup {
     )
       ? `.${window.location.hash.replace('#', '')}`
       : document.querySelector(`${window.location.hash}`)
-        ? `${window.location.hash}`
-        : null
+      ? `${window.location.hash}`
+      : null
 
     const buttons = document.querySelector(
       `[${this.options.attributeOpenButton} = "${classInHash}"]`
     )
       ? document.querySelector(
-        `[${this.options.attributeOpenButton} = "${classInHash}"]`
-      )
+          `[${this.options.attributeOpenButton} = "${classInHash}"]`
+        )
       : document.querySelector(
-        `[${this.options.attributeOpenButton} = "${classInHash.replace(
-                '.',
-                '#'
-        )}"]`
-      )
+          `[${this.options.attributeOpenButton} = "${classInHash.replace(
+            '.',
+            '#'
+          )}"]`
+        )
     if (buttons && classInHash) this.open(classInHash)
   }
 

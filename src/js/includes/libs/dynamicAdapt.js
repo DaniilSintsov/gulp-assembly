@@ -7,7 +7,7 @@ function DynamicAdapt(type) {
   this.type = type
 }
 
-DynamicAdapt.prototype.init = function() {
+DynamicAdapt.prototype.init = function () {
   const _this = this
   // массив объектов
   this.оbjects = []
@@ -32,7 +32,7 @@ DynamicAdapt.prototype.init = function() {
   // массив уникальных медиа-запросов
   this.mediaQueries = Array.prototype.map.call(
     this.оbjects,
-    function(item) {
+    function (item) {
       return (
         '(' +
         this.type +
@@ -46,7 +46,7 @@ DynamicAdapt.prototype.init = function() {
   )
   this.mediaQueries = Array.prototype.filter.call(
     this.mediaQueries,
-    function(item, index, self) {
+    function (item, index, self) {
       return Array.prototype.indexOf.call(self, item) === index
     }
   )
@@ -60,17 +60,17 @@ DynamicAdapt.prototype.init = function() {
     // массив объектов с подходящим брейк-пойнтом
     const оbjectsFilter = Array.prototype.filter.call(
       this.оbjects,
-      function(item) {
+      function (item) {
         return item.breakpoint === mediaBreakpoint
       }
     )
-    matchMedia.addListener(function() {
+    matchMedia.addListener(function () {
       _this.mediaHandler(matchMedia, оbjectsFilter)
     })
     this.mediaHandler(matchMedia, оbjectsFilter)
   }
 }
-DynamicAdapt.prototype.mediaHandler = function(matchMedia, оbjects) {
+DynamicAdapt.prototype.mediaHandler = function (matchMedia, оbjects) {
   if (matchMedia.matches) {
     for (let i = 0; i < оbjects.length; i++) {
       const оbject = оbjects[i]
@@ -88,7 +88,7 @@ DynamicAdapt.prototype.mediaHandler = function(matchMedia, оbjects) {
   }
 }
 // Функция перемещения
-DynamicAdapt.prototype.moveTo = function(place, element, destination) {
+DynamicAdapt.prototype.moveTo = function (place, element, destination) {
   element.classList.add(this.daClassname)
   if (place === 'last' || place >= destination.children.length) {
     destination.insertAdjacentElement('beforeend', element)
@@ -101,7 +101,7 @@ DynamicAdapt.prototype.moveTo = function(place, element, destination) {
   destination.children[place].insertAdjacentElement('beforebegin', element)
 }
 // Функция возврата
-DynamicAdapt.prototype.moveBack = function(parent, element, index) {
+DynamicAdapt.prototype.moveBack = function (parent, element, index) {
   element.classList.remove(this.daClassname)
   if (parent.children[index] !== undefined) {
     parent.children[index].insertAdjacentElement('beforebegin', element)
@@ -110,16 +110,16 @@ DynamicAdapt.prototype.moveBack = function(parent, element, index) {
   }
 }
 // Функция получения индекса внутри родителя
-DynamicAdapt.prototype.indexInParent = function(parent, element) {
+DynamicAdapt.prototype.indexInParent = function (parent, element) {
   const array = Array.prototype.slice.call(parent.children)
   return Array.prototype.indexOf.call(array, element)
 }
 // Функция сортировки массива по breakpoint и place
 // по возрастанию для this.type = min
 // по убыванию для this.type = max
-DynamicAdapt.prototype.arraySort = function(arr) {
+DynamicAdapt.prototype.arraySort = function (arr) {
   if (this.type === 'min') {
-    Array.prototype.sort.call(arr, function(a, b) {
+    Array.prototype.sort.call(arr, function (a, b) {
       if (a.breakpoint === b.breakpoint) {
         if (a.place === b.place) {
           return 0
@@ -139,7 +139,7 @@ DynamicAdapt.prototype.arraySort = function(arr) {
       return a.breakpoint - b.breakpoint
     })
   } else {
-    Array.prototype.sort.call(arr, function(a, b) {
+    Array.prototype.sort.call(arr, function (a, b) {
       if (a.breakpoint === b.breakpoint) {
         if (a.place === b.place) {
           return 0
