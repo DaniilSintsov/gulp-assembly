@@ -15,7 +15,9 @@ global.app = {
 }
 
 // Импорт задач
-import {copy} from './gulp/tasks/copy.js'
+import {copyFavicon} from './gulp/tasks/copyFavicon.js'
+import {copyFiles} from './gulp/tasks/copyFiles.js'
+import {copyVideo} from './gulp/tasks/copyVideo.js'
 import {fontsStyle, otfToTtf, ttfToWoff} from './gulp/tasks/fonts.js'
 import {ftp} from './gulp/tasks/ftp.js'
 import {gitignore} from './gulp/tasks/gitignore.js'
@@ -31,7 +33,9 @@ import {zip} from './gulp/tasks/zip.js'
 
 // Наблюдатель за изменениями в файлах
 function watcher() {
-  gulp.watch(path.watch.files, copy)
+  gulp.watch(path.watch.video, copyVideo)
+  gulp.watch(path.watch.favicon, copyFavicon)
+  gulp.watch(path.watch.files, copyFiles)
   gulp.watch(path.watch.html, html)
   gulp.watch(path.watch.php, php)
   gulp.watch(path.watch.scss, scss)
@@ -47,7 +51,17 @@ const fonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle)
 // Основные задачи
 const mainTasks = gulp.series(
   fonts,
-  gulp.parallel(copy, html, php, scss, js, images, gitignore)
+  gulp.parallel(
+    copyVideo,
+    copyFavicon,
+    copyFiles,
+    html,
+    php,
+    scss,
+    js,
+    images,
+    gitignore
+  )
 )
 
 // Построение сценариев выполнения задач
