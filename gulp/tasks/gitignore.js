@@ -7,7 +7,7 @@ export const gitignore = () => {
     fs.appendFile('./.gitignore', '/node_modules\r\n', cb)
     fs.appendFile('./.gitignore', '/dist\r\n', cb)
     fs.appendFile('./.gitignore', 'version.json\r\n', cb)
-    fs.appendFile('./.gitignore', '.env.local\r\n', cb)
+    fs.appendFile('./.gitignore', '.env\r\n', cb)
     fs.appendFile('./.gitignore', '**/video\r\n', cb)
     fs.appendFile('./.gitignore', '**/photo\r\n', cb)
     fs.appendFile('./.gitignore', '**/*.zip\r\n', cb)

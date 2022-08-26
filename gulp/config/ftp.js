@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 export let configFTP = {
   host: process.env.FTP_HOST,
   user: process.env.FTP_USER,

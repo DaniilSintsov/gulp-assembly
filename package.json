@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "bootstrap": "latest",
-    "normalize.css": "latest"
+    "normalize.css": "latest",
+    "dotenv": "latest"
   }
 }
