@@ -4,7 +4,7 @@
  */
 
 // Подключаем слайдер Swiper из node_modules
-import Swiper, {EffectFade, Navigation} from 'swiper'
+import Swiper, { EffectFade, Navigation } from 'swiper';
 /*
  При необходимости подключаем дополнительные модули слайдера, указывая их в {} через запятую
  Пример: { Navigation, Autoplay }
@@ -70,55 +70,55 @@ function initSliders() {
       // Кнопки "влево/вправо"
       navigation: {
         prevEl: '.goods-offer-slider__button-prev',
-        nextEl: '.goods-offer-slider__button-next',
+        nextEl: '.goods-offer-slider__button-next'
       },
 
       // Брейк-пойнты
       breakpoints: {
         320: {
           slidesPerView: 1,
-          spaceBetween: 30,
+          spaceBetween: 30
         },
         530: {
           slidesPerView: 2,
-          spaceBetween: 20,
+          spaceBetween: 20
         },
         710: {
           slidesPerView: 3,
-          spaceBetween: 20,
+          spaceBetween: 20
         },
         910: {
           slidesPerView: 4,
-          spaceBetween: 20,
+          spaceBetween: 20
         },
         1100: {
           slidesPerView: 5,
-          spaceBetween: 30,
+          spaceBetween: 30
         },
         1300: {
           slidesPerView: 6,
-          spaceBetween: 30,
-        },
+          spaceBetween: 30
+        }
       },
       // События
       on: {
         slideChangeTransitionEnd: function () {
           const activeSlide = document.querySelector(
             '.goods-offer-slider__slide.swiper-slide-active'
-          )
+          );
           const activeTab = document.querySelector(
             '.goods-offer-slider__slide._tab-active'
-          )
+          );
 
           if (activeTab) {
-            activeTab.classList.remove('_tab-active')
+            activeTab.classList.remove('_tab-active');
           }
           if (activeSlide) {
-            activeSlide.classList.add('_tab-active')
+            activeSlide.classList.add('_tab-active');
           }
-        },
-      },
-    })
+        }
+      }
+    });
   }
 
   if (document.querySelector('.main-offer-slider__slider')) {
@@ -128,8 +128,8 @@ function initSliders() {
       slidesPerView: 1,
       spaceBetween: 20,
       speed: 500,
-      simulateTouch: false,
-    })
+      simulateTouch: false
+    });
   }
 
   if (document.querySelector('.products-offer-slider__slider')) {
@@ -144,50 +144,50 @@ function initSliders() {
       loop: true,
       effect: 'fade',
       fadeEffect: {
-        crossFade: true,
+        crossFade: true
       },
       navigation: {
         prevEl: '.products-offer-slider__button-prev',
-        nextEl: '.products-offer-slider__button-next',
+        nextEl: '.products-offer-slider__button-next'
       },
-      touchRatio: 2,
-    })
+      touchRatio: 2
+    });
   }
 }
 
 // Скролл на базе слайдера (по классу swiper_scroll для оболочки слайдера)
 function initSlidersScroll() {
-  let sliderScrollItems = document.querySelectorAll('.swiper_scroll')
+  let sliderScrollItems = document.querySelectorAll('.swiper_scroll');
   if (sliderScrollItems.length > 0) {
     for (let index = 0; index < sliderScrollItems.length; index++) {
-      const sliderScrollItem = sliderScrollItems[index]
+      const sliderScrollItem = sliderScrollItems[index];
       const sliderScrollBar =
-        sliderScrollItem.querySelector('.swiper-scrollbar')
+        sliderScrollItem.querySelector('.swiper-scrollbar');
       const sliderScroll = new Swiper(sliderScrollItem, {
         observer: true,
         observeParents: true,
         direction: 'vertical',
         slidesPerView: 'auto',
         freeMode: {
-          enabled: true,
+          enabled: true
         },
         scrollbar: {
           el: sliderScrollBar,
           draggable: true,
-          snapOnRelease: false,
+          snapOnRelease: false
         },
         mousewheel: {
-          releaseOnEdges: true,
-        },
-      })
-      sliderScroll.scrollbar.updateSize()
+          releaseOnEdges: true
+        }
+      });
+      sliderScroll.scrollbar.updateSize();
     }
   }
 }
 
 window.addEventListener('load', function (e) {
   // Запуск инициализации слайдеров
-  initSliders()
+  initSliders();
   // Запуск инициализации скролла на базе слайдера (по классу swiper_scroll)
   //initSlidersScroll()
-})
+});

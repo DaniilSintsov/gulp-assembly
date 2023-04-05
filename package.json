@@ -38,6 +38,7 @@
     "gulp-webp-html-nosvg": "latest",
     "gulp-webpcss": "latest",
     "gulp-zip": "latest",
+    "prettier": "^2.8.7",
     "sass": "latest",
     "vinyl-ftp": "latest",
     "webp-converter": "2.2.3",
@@ -45,8 +46,7 @@
     "webpack-stream": "latest"
   },
   "dependencies": {
-    "bootstrap": "latest",
-    "normalize.css": "latest",
-    "dotenv": "latest"
+    "dotenv": "latest",
+    "normalize.css": "latest"
   }
 }
